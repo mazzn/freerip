@@ -7,7 +7,7 @@ rip-title() {
     local target="${dest}_${title}.mp4"
     echo "** Ripping $title to $target ..."
 
-    HandBrakeCLI --title $title --input $DEVICE --output "$target" --preset "High Profile" --optimize
+    HandBrakeCLI --title $title --input $DEVICE --output "$target" --preset "Super HQ 1080p30 Surround" --optimize
 }
 
 rip-video() {
