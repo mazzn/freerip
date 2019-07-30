@@ -1,5 +1,7 @@
 freerip allows you to quickly rip your own DVDs and CDs for personal use.  Simply, insert a disc into the drive and it will be ejected once complete.
 
+This fork uses blkid within the jail to identify and handle multiple disk drives.
+
 # Usage
 
    1. Insert a CD or DVD into the drive
