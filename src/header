@@ -1,7 +1,8 @@
 #!/usr/local/bin/bash -e
 
-# Config
-DEVICE=$(blkid -t LABEL="$(echo $1 | sed 's|iso9660/||')" /dev/cd* | cut -d ":" -f 1)
+LABEL=$(echo $1 | sed 's|iso9660/||')
+DEVICE=$(/usr/local/sbin/blkid -t LABEL="$LABEL" /dev/cd* | cut -d ":" -f 1)
+
 DISCNAME=UNKNOWN
 OUTPUTDIR=/mnt/freerip
 LOGDIR=${OUTPUTDIR}/logs
