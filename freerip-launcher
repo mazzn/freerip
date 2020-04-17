@@ -1,7 +1,11 @@
 #!/bin/sh
-# Find the correct jail number of jexec, as it can change between systems,
-# reboots and even jail restarts
 
-JAIL_NUM=`jls | grep 'freerip\|handbrake' -i | col | cut -f 1`
+#Find jail name, as mine is named freerip-v3. You could also hardcode your jail here.
+JAIL_NAME=`iocage list | grep 'freerip' | grep up | cut -f3 -d '|'`
 
-jexec $JAIL_NUM /usr/local/bin/freerip.sh $*
+#Find disk by label and forward it
+LABEL=$(blkid -s LABEL $1 | cut -d"=" -f2)
+LABEL=$(echo $LABEL | cut -d "\"" -f 2)
+DEVICE=$(blkid -t LABEL=$LABEL /dev/cd* | cut -d ":" -f 1)
+
+iocage exec $JAIL_NAME /usr/local/bin/freerip.sh $1 $DEVICE
