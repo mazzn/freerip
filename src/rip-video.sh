@@ -14,7 +14,7 @@ rip-video() {
     local dest="$1"
 
     # + title 2:
-    echo "** Finding titles to rip ..."
+    echo "** Finding titles to rip [Dev $DEVICE] [Dest $1] [CDEV $CDEV]"
     local titles=$(HandBrakeCLI --input $DEVICE --output /dev/stdout --title 0 --min-duration 300 2>&1 | grep '+ title' | cut -w -f 3 | cut -d : -f 1 | tr '\n' ' ')
     echo "** Found: $titles"
     for title in $titles; do
